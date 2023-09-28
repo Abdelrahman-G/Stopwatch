@@ -1,7 +1,6 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
-#include <avr/io.h>
-#include "common_macros.h"
+
 #include "GPIO.h"
 
 #define MINUTE 60
@@ -17,7 +16,7 @@ unsigned char countDownButtonState = 0 ;
 
 
 void Timer1_CTC_mode_Initial(void) {
-	SET_BIT(SREG,7);
+	SREG|=(1<<7);
 	TIMSK|=(1<<OCIE1A);
 	TCNT1=0;
 	OCR1A = TICKS_PER_SECOND;
